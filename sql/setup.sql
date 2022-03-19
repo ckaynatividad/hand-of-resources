@@ -12,5 +12,5 @@ CREATE TABLE cats (
 INSERT INTO
     cats (name, age, type)
 VALUES
-    ('Cardo', 4, 'Himalayan'),
+    ('Cardamon', 4, 'Himalayan'),
     ('Bucket', 5, 'Scottish Fold Tabby');
