@@ -22,4 +22,22 @@ describe('animes routes', () => {
 
     expect(res.body).toEqual({ id: expect.any(String), ...expected });
   });
+
+  it('gets anime list', async () => {
+    const expected = [
+      {
+        title: 'My Dress-Up Darling',
+        id: '1',
+        genre: 'shojo',
+      },
+      {
+        title: 'xxxHolic',
+        id: '2',
+        genre: 'shonen',
+      },
+    ];
+    const res = await request(app).get('/api/v1/animes');
+
+    expect(res.body).toEqual(expected);
+  });
 });
