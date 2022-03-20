@@ -71,4 +71,11 @@ describe('animes routes', () => {
     expect(res.body).toEqual(expected);
     expect(await Anime.findById(anime.id)).toEqual(expected);
   });
+
+  it('deletes anime', async () => {
+    const expected = await Anime.findById(2);
+    const res = await request(app).delete(`/api/v1/animes/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+  });
 });
