@@ -70,4 +70,11 @@ describe('shows routes', () => {
     expect(res.body).toEqual(expected);
     expect(await Show.findById(show.id)).toEqual(expected);
   });
+
+  it('deletes show', async () => {
+    const expected = await Show.findById(2);
+    const res = await request(app).delete(`/api/v1/shows/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+  });
 });
