@@ -40,4 +40,14 @@ describe('shows routes', () => {
 
     expect(res.body).toEqual(expected);
   });
+
+  it('get show by id', async () => {
+    const expected = {
+      title: 'Ugly Betty',
+      id: '1',
+      watch_app: 'Hulu',
+    };
+    const res = await request(app).get(`/api/v1/shows/${expected.id}`);
+    expect(res.body).toEqual(expected);
+  });
 });
