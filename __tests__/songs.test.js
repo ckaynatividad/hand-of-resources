@@ -21,4 +21,22 @@ describe('songs routes', () => {
 
     expect(res.body).toEqual({ id: expect.any(String), ...expected });
   });
+
+  it('gets songlist', async () => {
+    const expected = [
+      {
+        title: 'Addiction',
+        id: '1',
+        singer: 'Doja Cat',
+      },
+      {
+        title: 'Eventually',
+        id: '2',
+        singer: 'Tame Impala',
+      },
+    ];
+    const res = await request(app).get('/api/v1/songs');
+
+    expect(res.body).toEqual(expected);
+  });
 });
