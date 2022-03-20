@@ -2,7 +2,7 @@
 -- The SQL in this file will be executed when you run `npm run setup-db`
 DROP TABLE IF EXISTS cats;
 DROP TABLE IF EXISTS animes;
-
+DROP TABLE IF EXISTS shows;
 
 CREATE TABLE cats (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -17,6 +17,17 @@ CREATE TABLE animes (
     genre TEXT NOT NULL
 );
 
+CREATE TABLE shows (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT NOT NULL,
+    watch_app TEXT NOT NULL
+);
+
+INSERT INTO
+    shows (title, watch_app)
+VALUES
+    ('Ugly Betty', 'Hulu'),
+    ('Peep Show', 'Hulu');
 INSERT INTO 
     animes (title, genre)
 VALUES
