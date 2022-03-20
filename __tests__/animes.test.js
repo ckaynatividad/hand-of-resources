@@ -40,4 +40,14 @@ describe('animes routes', () => {
 
     expect(res.body).toEqual(expected);
   });
+
+  it('gets anime by id', async () => {
+    const expected = {
+      title: 'My Dress-Up Darling',
+      id: '1',
+      genre: 'shojo',
+    };
+    const res = await request(app).get(`/api/v1/animes/${expected.id}`);
+    expect(res.body).toEqual(expected);
+  });
 });
