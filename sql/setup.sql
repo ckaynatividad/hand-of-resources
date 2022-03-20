@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS cats;
 DROP TABLE IF EXISTS animes;
 DROP TABLE IF EXISTS shows;
 DROP TABLE IF EXISTS undertones;
+DROP TABLE IF EXISTS songs;
 
 CREATE TABLE cats (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -30,6 +31,17 @@ CREATE TABLE undertones (
     color TEXT NOT NULL
 );
 
+CREATE TABLE songs (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    title TEXT NOT NULL,
+    singer TEXT NOT NULL
+);
+
+INSERT INTO
+    songs (title, singer)
+VALUES
+    ('Addiction', 'Doja Cat'),
+    ('Eventually', 'Tame Impala');
 INSERT INTO
     undertones (tone, color)
 VALUES
