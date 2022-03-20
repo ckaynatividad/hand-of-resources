@@ -69,4 +69,11 @@ describe('songs routes', () => {
     expect(res.body).toEqual(expected);
     expect(await Song.findById(song.id)).toEqual(expected);
   });
+
+  it('deletes song', async () => {
+    const expected = await Song.findById(2);
+    const res = await request(app).delete(`/api/v1/songs/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+  });
 });
