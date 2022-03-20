@@ -50,4 +50,25 @@ describe('animes routes', () => {
     const res = await request(app).get(`/api/v1/animes/${expected.id}`);
     expect(res.body).toEqual(expected);
   });
+
+  it('updates anime', async () => {
+    const anime = {
+      title: 'xxxHolic',
+      id: '2',
+      genre: 'shonen',
+    };
+
+    const res = await request(app)
+      .patch(`/api/v1/animes/${anime.id}`)
+      .send({ title: 'Maid-Sama', genre: 'shojo' });
+
+    const expected = {
+      id: expect.any(String),
+      title: 'Maid-Sama',
+      genre: 'shojo',
+    };
+
+    expect(res.body).toEqual(expected);
+    expect(await Anime.findById(anime.id)).toEqual(expected);
+  });
 });
