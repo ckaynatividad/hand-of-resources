@@ -22,4 +22,22 @@ describe('shows routes', () => {
 
     expect(res.body).toEqual({ id: expect.any(String), ...expected });
   });
+
+  it('gets showlist', async () => {
+    const expected = [
+      {
+        title: 'Ugly Betty',
+        id: '1',
+        watch_app: 'Hulu',
+      },
+      {
+        title: 'Peep Show',
+        id: '2',
+        watch_app: 'Hulu',
+      },
+    ];
+    const res = await request(app).get('/api/v1/shows');
+
+    expect(res.body).toEqual(expected);
+  });
 });
