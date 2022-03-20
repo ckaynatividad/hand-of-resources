@@ -39,4 +39,14 @@ describe('songs routes', () => {
 
     expect(res.body).toEqual(expected);
   });
+
+  it('gets song by id', async () => {
+    const expected = {
+      title: 'Addiction',
+      id: '1',
+      singer: 'Doja Cat',
+    };
+    const res = await request(app).get(`/api/v1/songs/${expected.id}`);
+    expect(res.body).toEqual(expected);
+  });
 });
