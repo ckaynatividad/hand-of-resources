@@ -50,4 +50,24 @@ describe('shows routes', () => {
     const res = await request(app).get(`/api/v1/shows/${expected.id}`);
     expect(res.body).toEqual(expected);
   });
+
+  it('updates show', async () => {
+    const show = {
+      title: 'Peep Show',
+      id: '2',
+      watch_app: 'Hulu',
+    };
+
+    const res = await request(app)
+      .patch(`/api/v1/shows/${show.id}`)
+      .send({ title: 'The Office', watch_app: 'Peacock' });
+
+    const expected = {
+      id: expect.any(String),
+      title: 'The Office',
+      watch_app: 'Peacock',
+    };
+    expect(res.body).toEqual(expected);
+    expect(await Show.findById(show.id)).toEqual(expected);
+  });
 });
