@@ -1,6 +1,7 @@
 const request = require('supertest');
 const setup = require('../data/setup');
 const app = require('../lib/app');
+const Undertone = require('../lib/models/Undertone');
 const pool = require('../lib/utils/pool');
 
 describe('tones routes', () => {
@@ -48,5 +49,26 @@ describe('tones routes', () => {
     };
     const res = await request(app).get(`/api/v1/undertones/${expected.id}`);
     expect(res.body).toEqual(expected);
+  });
+
+  it('updates tone', async () => {
+    const undertone = {
+      tone: 'cool',
+      id: '2',
+      color: 'blue',
+    };
+
+    const res = await request(app)
+      .patch(`/api/v1/undertones/${undertone.id}`)
+      .send({ tone: 'neutral', color: 'yellow and blue' });
+
+    const expected = {
+      id: expect.any(String),
+      tone: 'neutral',
+      color: 'yellow and blue',
+    };
+
+    expect(res.body).toEqual(expected);
+    expect(await Undertone.findById(undertone.id)).toEqual(expected);
   });
 });
