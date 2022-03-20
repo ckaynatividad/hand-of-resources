@@ -21,4 +21,22 @@ describe('tones routes', () => {
 
     expect(res.body).toEqual({ id: expect.any(String), ...expected });
   });
+
+  it('gets tonelist', async () => {
+    const expected = [
+      {
+        tone: 'olive',
+        color: 'green',
+        id: '1',
+      },
+      {
+        tone: 'cool',
+        color: 'blue',
+        id: '2',
+      },
+    ];
+    const res = await request(app).get('/api/v1/undertones');
+
+    expect(res.body).toEqual(expected);
+  });
 });
