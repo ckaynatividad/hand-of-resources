@@ -3,6 +3,7 @@
 DROP TABLE IF EXISTS cats;
 DROP TABLE IF EXISTS animes;
 DROP TABLE IF EXISTS shows;
+DROP TABLE IF EXISTS undertones;
 
 CREATE TABLE cats (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -23,6 +24,17 @@ CREATE TABLE shows (
     watch_app TEXT NOT NULL
 );
 
+CREATE TABLE undertones (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    tone TEXT NOT NULL,
+    color TEXT NOT NULL
+);
+
+INSERT INTO
+    undertones (tone, color)
+VALUES
+    ('olive', 'green'),
+    ('cool', 'blue');
 INSERT INTO
     shows (title, watch_app)
 VALUES
