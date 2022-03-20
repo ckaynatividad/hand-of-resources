@@ -1,6 +1,7 @@
 const request = require('supertest');
 const setup = require('../data/setup');
 const app = require('../lib/app');
+const Song = require('../lib/models/Song');
 const pool = require('../lib/utils/pool');
 
 describe('songs routes', () => {
@@ -48,5 +49,24 @@ describe('songs routes', () => {
     };
     const res = await request(app).get(`/api/v1/songs/${expected.id}`);
     expect(res.body).toEqual(expected);
+  });
+
+  it('updates song', async () => {
+    const song = {
+      title: 'Eventually',
+      id: '2',
+      singer: 'Tame Impala',
+    };
+    const res = await request(app)
+      .patch(`/api/v1/songs/${song.id}`)
+      .send({ title: 'Lost', singer: 'Frank Ocean' });
+
+    const expected = {
+      id: '2',
+      title: 'Lost',
+      singer: 'Frank Ocean',
+    };
+    expect(res.body).toEqual(expected);
+    expect(await Song.findById(song.id)).toEqual(expected);
   });
 });
