@@ -71,4 +71,11 @@ describe('tones routes', () => {
     expect(res.body).toEqual(expected);
     expect(await Undertone.findById(undertone.id)).toEqual(expected);
   });
+
+  it('deletes undertones', async () => {
+    const expected = await Undertone.findById(2);
+    const res = await request(app).delete(`/api/v1/undertones/${expected.id}`);
+
+    expect(res.body).toEqual(expected);
+  });
 });
